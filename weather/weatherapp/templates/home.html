@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Weather App</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter city name" class="form-control my-3">
+            <button type="submit" class="btn btn-primary">Get Weather</button>
+        </form>
+
+        {% if weather %}
+            <div class="weather mt-4">
+                <h2>{{ weather.city }}, {{ weather.country }}</h2>
+                <p>{{ weather.temperature }} °C</p>
+                <p>{{ weather.condition }}</p>
+                <img src="{{ weather.icon }}" alt="Weather Icon">
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
